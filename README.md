@@ -25,4 +25,6 @@ Records, Topics and Partitions, three fundamental pieces to send and receive mes
 - Consumer: Who consumes the event.
 - Streaming: Process the events, one by one, in the order they arrive in the system (like a video streaming), in real time.
 
+There is a config file **KafkaConsole.config** that will be used to connect to Kafka in confluent. So just create and account there, some topics and update this config file with your credentials.
+
 **In Demo 03** - TODO
