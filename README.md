@@ -13,7 +13,7 @@ https://www.confluent.io/get-started/
 
 Records, Topics and Partitions, three fundamental pieces to send and receive messages in kafka.
 
-- Record: Key, Value, Timestamp, where Key and Value can be anything.
+- Record: Key, Value, Timestamp, where Key and Value can be anything. If you don't give the timestamp, kafka will generate one for you.
 - Topic: group of records. Stored in Brokers and managed by Zookeeper. 
     * Two strategies to store a topic: Delete/Compaction.
         * Delete: Set a max value in bytes and the topic will be deleting the old messages by size or time.
