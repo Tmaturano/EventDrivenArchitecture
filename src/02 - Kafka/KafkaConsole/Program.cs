@@ -105,6 +105,7 @@ namespace KafkaConsole
 
                 Console.WriteLine($"Producing record: {key} {val}");
 
+                //whenever we use "Produce", we have this handler that we called "deliveryReport"
                 producer.Produce(topic, new Message<string, string> { Key = key, Value = val },
                     (deliveryReport) =>
                     {
