@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Confluent.Kafka" Version="1.8.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ThiagoStore.Order.Domain\ThiagoStore.Order.Domain.csproj" />
+    <ProjectReference Include="..\ThiagoStore.SharedContext\ThiagoStore.SharedContext.csproj" />
+  </ItemGroup>
+
+</Project>
