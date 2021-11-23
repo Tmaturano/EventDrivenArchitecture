@@ -15,7 +15,7 @@ namespace ThiagoStore.Order.Infra.ExternalServices
         {
             var config = LoadConfig();
             var value = JsonSerializer.Serialize(evt);
-            await CreateTopicIfNotExist(topic, numberPartitions: 1, replicationFactor: 3, config);
+            //await CreateTopicIfNotExist(topic, numberPartitions: 1, replicationFactor: 3, config);
             Produce(topic, evt.Id.ToString(), value, config);
         }
 
