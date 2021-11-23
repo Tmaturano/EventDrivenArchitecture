@@ -21,9 +21,15 @@ namespace ThiagoStore.Order.Domain.Entities
         public DateTime LastUpdateDate { get; private set; }
         public IReadOnlyCollection<Transaction> Transactions => _transactions;
 
+        // This way we avoid having the dependency of the service class (e.g kafka service) in this domain class.
+        // we invoke an event that has been delegated previously (check OrderCommandHandler.cs / HandleAsync)
         public void Place()
         {
             LastUpdateDate = DateTime.Now;
+
+            var args = EventArgs.Empty; 
+            var handler = OnOrderPlaced;
+            handler?.Invoke(this, args);
         }
 
         public void Pay(Transaction transaction)

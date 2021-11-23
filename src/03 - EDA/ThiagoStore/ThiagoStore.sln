@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThiagoStore.Order.Domain", "ThiagoStore.Order.Domain\ThiagoStore.Order.Domain.csproj", "{3ABC6A0B-FF7A-40E0-A29D-D367F5CB2E6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThiagoStore.Order.Domain", "ThiagoStore.Order.Domain\ThiagoStore.Order.Domain.csproj", "{3ABC6A0B-FF7A-40E0-A29D-D367F5CB2E6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThiagoStore.SharedContext", "ThiagoStore.SharedContext\ThiagoStore.SharedContext.csproj", "{65CFE060-E6BB-4F05-8CB3-8056CD4FF963}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThiagoStore.SharedContext", "ThiagoStore.SharedContext\ThiagoStore.SharedContext.csproj", "{65CFE060-E6BB-4F05-8CB3-8056CD4FF963}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThiagoStore.Order.Infra", "ThiagoStore.Order.Infra\ThiagoStore.Order.Infra.csproj", "{2CBEAD77-A8DE-41F5-B944-CAC654E457D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThiagoStore.Order.Infra", "ThiagoStore.Order.Infra\ThiagoStore.Order.Infra.csproj", "{2CBEAD77-A8DE-41F5-B944-CAC654E457D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThiagoStore.Payment.Domain", "ThiagoStore.Payment.Domain\ThiagoStore.Payment.Domain.csproj", "{0AD684F9-4A60-472F-93CE-02D0065BA650}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThiagoStore.Payment.Domain", "ThiagoStore.Payment.Domain\ThiagoStore.Payment.Domain.csproj", "{0AD684F9-4A60-472F-93CE-02D0065BA650}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThiagoStore.Shipping.Domain", "ThiagoStore.Shipping.Domain\ThiagoStore.Shipping.Domain.csproj", "{2A4F157C-0784-45B3-AB07-156F663F8C6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThiagoStore.Shipping.Domain", "ThiagoStore.Shipping.Domain\ThiagoStore.Shipping.Domain.csproj", "{2A4F157C-0784-45B3-AB07-156F663F8C6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThiagoStore.Order.App", "ThiagoStore.Order.App\ThiagoStore.Order.App.csproj", "{79A6BFF2-A77E-4363-A429-165FA7A59A65}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{2A4F157C-0784-45B3-AB07-156F663F8C6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A4F157C-0784-45B3-AB07-156F663F8C6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A4F157C-0784-45B3-AB07-156F663F8C6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79A6BFF2-A77E-4363-A429-165FA7A59A65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79A6BFF2-A77E-4363-A429-165FA7A59A65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79A6BFF2-A77E-4363-A429-165FA7A59A65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79A6BFF2-A77E-4363-A429-165FA7A59A65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

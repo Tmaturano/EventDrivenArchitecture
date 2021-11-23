@@ -17,6 +17,7 @@ namespace ThiagoStore.Order.Domain.Commands.Handlers
         private readonly IOrderRepository _repository;
         private readonly IPaymentService _paymentService;
         private readonly IEventService _eventService;
+        private string _topic = string.Empty;
 
         public OrderCommandHandler(
             IOrderRepository repository,
@@ -27,6 +28,8 @@ namespace ThiagoStore.Order.Domain.Commands.Handlers
             _paymentService = paymentService;
             _eventService = eventService;
         }
+
+        public void SetTopic(string topic) => _topic = topic;
 
         public async Task HandleAsync(PlaceOrderCommand command)
         {
@@ -60,11 +63,11 @@ namespace ThiagoStore.Order.Domain.Commands.Handlers
         }
 
         //will be used with Kafka or other messaging
-        private void OnOrderPlaced(object sender, EventArgs e) =>
-            _eventService.Queue(new OrderCreatedEvent((Entities.Order)sender));
+        private async void OnOrderPlaced(object sender, EventArgs e) =>
+            await _eventService.Queue(new OrderCreatedEvent((Entities.Order)sender), _topic);
 
         //will be used with Kafka or other messaging
         private void OnOrderPaid(object sender, EventArgs e) =>
-            _eventService.Queue(new OrderPaidEvent((Entities.Order)sender));
+            _eventService.Queue(new OrderPaidEvent((Entities.Order)sender), _topic);
     }
 }

@@ -1,7 +1,9 @@
 ﻿using Confluent.Kafka;
+using Confluent.Kafka.Admin;
 using System;
 using System.Collections.Generic;
 using System.Text.Json;
+using System.Threading.Tasks;
 using ThiagoStore.SharedContext.Events;
 using ThiagoStore.SharedContext.ExternalServices;
 
@@ -9,15 +11,17 @@ namespace ThiagoStore.Order.Infra.ExternalServices
 {
     public class KafkaEventService : IEventService
     {
-        public void Queue(IDomainEvent evt)
+        public async Task Queue(IDomainEvent evt, string topic)
         {
             var config = LoadConfig();
             var value = JsonSerializer.Serialize(evt);
-            Produce("payments", evt.Id.ToString(), value, config);
+            await CreateTopicIfNotExist(topic, numberPartitions: 1, replicationFactor: 3, config);
+            Produce(topic, evt.Id.ToString(), value, config);
         }
 
-        private static ClientConfig LoadConfig()
+        private ClientConfig LoadConfig()
         {
+            // This config should be external and not in plain text like in this example
             var cloudConfig = new Dictionary<string, string>
             {
                 {"bootstrap.servers", "pkc-lzvrd.us-west4.gcp.confluent.cloud:9092"},
@@ -30,7 +34,33 @@ namespace ThiagoStore.Order.Infra.ExternalServices
             return new ClientConfig(cloudConfig);            
         }
 
-        private static void Produce(string topic, string key, string value, ClientConfig config)
+        private async Task CreateTopicIfNotExist(string name, int numberPartitions, short replicationFactor, ClientConfig cloudConfig)
+        {
+            using var adminClient = new AdminClientBuilder(cloudConfig).Build();
+            try
+            {
+                await adminClient.CreateTopicsAsync(new List<TopicSpecification> {
+                        new TopicSpecification
+                        {
+                            Name = name,
+                            NumPartitions = numberPartitions,
+                            ReplicationFactor = replicationFactor
+                        } });
+            }
+            catch (CreateTopicsException e)
+            {
+                if (e.Results[0].Error.Code != ErrorCode.TopicAlreadyExists)
+                {
+                    Console.WriteLine($"An error occured creating topic {name}: {e.Results[0].Error.Reason}");
+                }
+                else
+                {
+                    Console.WriteLine("Topic already exists");
+                }
+            }
+        }
+
+        private void Produce(string topic, string key, string value, ClientConfig config)
         {
             using var producer = new ProducerBuilder<string, string>(config).Build();
             producer.Produce(topic, new Message<string, string> { Key = key, Value = value },
@@ -40,6 +70,8 @@ namespace ThiagoStore.Order.Infra.ExternalServices
                         throw new Exception(deliveryReport.Error.Reason);
                 });
             producer.Flush(TimeSpan.FromSeconds(10));
+
+            Console.WriteLine($"Message sent to topic {topic}");
         }
     }
 }
