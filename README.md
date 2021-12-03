@@ -27,4 +27,4 @@ Records, Topics and Partitions, three fundamental pieces to send and receive mes
 
 There is a config file **KafkaConsole.config** that will be used to connect to Kafka in confluent. So just create and account there, some topics and update this config file with your credentials.
 
-**In Demo 03**, I added the same example from Demo 1, but not with an integration with Kafka in Confluent.io
+**In Demo 03**, I added the same example from Demo 1, but now with an integration with Kafka in Confluent.io
